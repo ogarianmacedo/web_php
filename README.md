@@ -1,2 +1,2 @@
 # web_php
-Aplicação web com PHP
+Projeto livre - aplicação web com PHP
