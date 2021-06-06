@@ -1,0 +1,43 @@
+<?php
+session_start();
+include_once("../services/auth/seguranca.php");
+
+$id = $_GET['id'];
+
+$result = mysqli_query(
+        $GLOBALS['connection'],
+   "SELECT * FROM tb_situacao WHERE id = '$id' LIMIT 1"
+);
+$situacao = mysqli_fetch_assoc($result);
+?>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Editar Status: <?= $situacao['nome'];?></h2>
+        </div>
+        <div class="col-md-6 text-end">
+            <a href="page.php?link=15" class="btn btn-primary">
+                Voltar
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5">
+            <form action="../services/situacao/edita_situacao.php" class="form-horizontal" method="post">
+                <div class="mb-3">
+                    <label for="" class="col-sm-4 form-label">Nome Status</label>
+                    <input type="text" class="form-control" name="nome" placeholder="Nome" value="<?= $situacao['nome']?>">
+                </div>
+
+                <input type="hidden" name="id" value="<?= $situacao['id'];?>">
+
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary btn-block">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

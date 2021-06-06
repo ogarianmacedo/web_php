@@ -1,0 +1,29 @@
+<?php
+$resultado = mysqli_query($GLOBALS['connection'], "SELECT  * FROM tb_produto ORDER BY RAND() LIMIT 9");
+$produto = mysqli_num_rows($resultado);
+?>
+<section>
+    <div class="container px-5">
+        <h1 class="text-center" style="margin-top: 15vh;">Todos os produtos da loja</h1>
+        <br>
+        <div class="row">
+            <?php
+            while ($produto = mysqli_fetch_array($resultado)) {
+                ?>
+                <div class="col-lg-4">
+                    <div class="card card-produtos" style="width: 18rem;">
+                        <?php $img = $produto['arquivo']; ?>
+                        <img class="card-img-top" src="<?= "resources/upload/$img"; ?>" alt="" width="140"
+                             height="140">
+
+                        <div class="card-body">
+                            <h4><?= $produto['nome']; ?></h4>
+                            <p><?= $produto['resumo']; ?></p>
+                            <h5>R$: <?= str_replace(['.'],',', $produto['valor']); ?></h5>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+</section>

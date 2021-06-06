@@ -1,0 +1,36 @@
+<div class="mb-3">
+    <label class="form-label" for="nome">Nome Completo</label>
+    <input type="text" class="form-control" name="nome" value="<?= $usuario['nome']?>" required>
+</div>
+<div class="mb-3">
+    <label class="form-label" for="email">E-mail</label>
+    <input type="email" class="form-control" name="email" value="<?= $usuario['email']?>" required>
+</div>
+<div class="mb-3">
+    <label class="form-label" for="nome">Usuário</label>
+    <input type="text" class="form-control" name="usuario" value="<?= $usuario['usuario']?>" required>
+</div>
+<div class="mb-3">
+    <label class="form-label" for="senha">Senha</label>
+    <input type="password" class="form-control" name="senha" style="width: 50%" required>
+</div>
+<div class="mb-3">
+    <label class="form-label" class="control-label">Nível de Acesso</label>
+    <select class="form-control" name="nivel_acesso" style="width: 50%">
+        <option>Selecionar</option>
+        <option value="ADMINISTRADOR"
+            <?php
+            if ($usuario['nivel_acesso'] == 'ADMINISTRADOR') {
+                echo 'selected';
+            }
+            ?>
+        >Administrativo</option>
+        <option value="USUARIO"
+            <?php
+            if ($usuario['nivel_acesso'] == 'USUARIO') {
+                echo 'selected';
+            }
+            ?>
+        >Usuário</option>
+    </select>
+</div>

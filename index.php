@@ -1,47 +1,27 @@
 <?php
-require "urlClass.php";
+require "config/url.php";
 session_start();
-include_once("app-adm/services/conexao.php");
+include_once("app/services/database/connection.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Loja de Instrumentos">
-  <meta name="author" content="Ogarian Macedo">
-  <link rel="icon" href="../../favicon.ico">
-
-  <title>Loja de Instrumentos</title>
-
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-
-  <link href="css/carousel.css" rel="stylesheet">
-
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Loja Musical</title>
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
+    <link href="assets/css/styles.css" rel="stylesheet" />
+    <link href="assets/css/site.css" rel="stylesheet" />
 </head>
-
-<body>
-
+<body id="page-top">
   <?php
-  include_once("views/menu.php");
+      include_once("views/menu.phtml");
+      URL::getContent();
   ?>
 
-  <?php
-  $view = Url::getURL( 0 );
-
-  if( $view == null )
-  $view = "home";
-
-  if( file_exists( "views/" . $view . ".php" ))
-  require "views/" . $view . ".php";
-  else
-  require "views/404.php";
-  ?>
-
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-  <script src="js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/scripts.js"></script>
 </body>
 </html>

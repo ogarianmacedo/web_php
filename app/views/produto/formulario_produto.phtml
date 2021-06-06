@@ -1,0 +1,111 @@
+<div class="mb-3">
+	<label class="form-label" for="">Nome</label>
+	<input type="text" class="form-control" name="nome" value="<?= $produto['nome']?>" required>
+</div>
+
+<div class="mb-3">
+	<label class="form-label" for="">Resumo</label>
+	<textarea class="form-control" name="resumo" id="" cols="30" rows="3"  required>
+		<?= $produto['resumo']?>
+	</textarea>
+</div>
+
+<div class="mb-3">
+	<label class="form-label" for="">Descrição</label>
+	<textarea class="form-control" name="descricao" id="" cols="30" rows="3" required>
+		<?= $produto['descricao']?>
+	</textarea>
+</div>
+
+<div class="mb-3">
+	<label class="form-label" for="">Valor</label>
+	<input type="text" class="form-control" name="valor" value="<?= $produto['valor']?>" required>
+</div>
+
+<div class="mb-3">
+	<label class="form-label" for="">Tag</label>
+	<input type="text" class="form-control" name="tag" value="<?= $produto['tag']?>" required>
+</div>
+
+<div class="mb-3">
+	<label class="form-label" for="">Description</label>
+	<input type="text" class="form-control" name="description" value="<?= $produto['description']?>" required>
+</div>
+
+
+<div class="mb-3">
+	<label class="custom-file-upload">
+		<input type="file" name="arquivo"/>
+		Adicionar Imagem
+	</label>
+</div>
+
+<?php
+$foto = $produto['arquivo'];
+if($foto == ""){
+	?>
+	<div class="mb-3">
+		<label class="form-label">O produto não possui imagem</label>
+	</div>
+	<?php
+}
+
+if($foto != ""){
+	?>
+	<div class="mb-3">
+		<label class="form-label" for="">Imagem Atual</label>
+		<img src="<?= "../../../resources/upload/$foto";?>" width="100" height="100" alt="">
+	</div>
+	<?php
+}
+?>
+
+<?php
+$categoria_id = $produto['categoria_id'];
+?>
+<div class="mb-3">
+	<label class="form-label" for="">Categorias</label>
+	<select name="categoria_id" id="" class="form-select">
+		<option value="">Selecione</option>
+		<?php 
+		$produto_categoria = mysqli_query($GLOBALS['connection'], "SELECT * FROM tb_categoria");
+
+		while($dados = mysqli_fetch_assoc($produto_categoria)){
+			$id = $dados['id'];
+        ?>
+			<option value="<?= $dados['id']?>"
+				<?php if($id == $categoria_id){
+					echo "selected";
+				}?>>
+				<?= $dados['nome']?>
+			</option>
+        <?php
+		}
+		?>
+	</select>
+</div>
+
+<?php
+$situacao_id = $produto['situacao_id'];
+?>
+<div class="mb-3">
+	<label class="form-label" for="">Situação</label>
+	<select class="form-select" name="situacao_id" id="">
+		<option value="">Selecione</option>
+		<?php 
+		$produto_situacao = mysqli_query($GLOBALS['connection'], "SELECT * FROM tb_situacao");
+
+		while($dados = mysqli_fetch_assoc($produto_situacao)){
+			$id = $dados['id'];
+        ?>
+			<option value="<?= $dados['id'];?>"
+				<?php if($id == $situacao_id){
+					echo "selected";
+				}?>>
+				<?= $dados['nome']?>
+			</option>
+        <?php
+		}
+		?>
+	</select>
+</div>

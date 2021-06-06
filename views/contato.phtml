@@ -1,0 +1,35 @@
+<section>
+    <div class="container px-5">
+        <h1 class="text-center" style="margin-top: 15vh;">Contate-nos</h1>
+        <br>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="enviar_email.php" method="post">
+                            <div class="mb-3">
+                                <label class="form-label" for="email">Nome</label>
+                                <input type="text" class="form-control" id="email" placeholder="" name="nome" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="email">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="pwd">Telefone</label>
+                                <input type="text" class="form-control" id="pwd" placeholder="" name="telefone"
+                                       required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="pwd">Mensagem</label>
+                                <textarea id="" cols="30" rows="3" class="form-control" name="msg" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

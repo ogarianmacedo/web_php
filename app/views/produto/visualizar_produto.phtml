@@ -1,0 +1,76 @@
+<?php
+session_start();
+include_once ("../services/auth/seguranca.php");
+
+$id = $_GET['id'];
+
+$resultado = mysqli_query(
+        $GLOBALS['connection'],
+        "SELECT * FROM tb_produto WHERE id = '$id' LIMIT 1"
+);
+$produto = mysqli_fetch_assoc($resultado);
+?>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Produto: <?= $produto['nome'];?></h2>
+        </div>
+
+        <div class="col-md-6 text-end">
+            <a href="page.php?link=12" type="button" class="btn btn-info">
+                Lista de Produtos
+            </a>
+
+            <a href="page.php?link=13&id=<?= $produto['id'];?>" type="button" class="btn btn-warning">
+                <i class="far fa-edit"></i>
+            </a>
+
+            <a href="../services/produto/deleta_produto.php?id=<?= $produto['id'];?>" type="button" class="btn btn-danger">
+                <i class="fas fa-trash"></i>
+            </a>
+        </div>
+    </div>
+
+    <br>
+
+    <table class="table">
+    	<thead>
+    		<tr>
+    			<th>ID</th>
+    			<th>Nome</th>
+    			<th>Resumo</th>
+    			<th>Descrição</th>
+    			<th>Valor</th>
+    			<th>Imagem</th>
+                <th>Data Criação</th>
+                <th>Data Modificação</th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		<tr>
+    			<td>
+    				<?= $produto['id'];?>
+    			</td>
+    			<td>
+    				<?= $produto['nome'];?>
+    			</td>
+    			<td>
+    				<?= $produto['resumo'];?>
+    			</td>
+    			<td>
+    				<?= mb_strimwidth($produto['descricao'], 0, 200);?> ...
+    			</td>
+    			<td>
+    				<?= $produto['valor'];?>
+    			</td>
+    			<td>
+    				<?php $imagem = $produto['arquivo'];?>
+    				<img src="<?= "../../../resources/upload/$imagem";?>" alt="" width="100" height="100">
+    			</td>
+                <td><?= date("d/m/Y", strtotime($produto['criado']));?></td>
+                <td><?= date("d/m/Y", strtotime($produto['modificado']));?></td>
+    		</tr>
+    	</tbody>
+    </table>
+</div>

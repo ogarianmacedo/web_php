@@ -1,0 +1,101 @@
+<?php
+$result = mysqli_query($GLOBALS['connection'], "SELECT  * FROM tb_produto ORDER BY RAND() LIMIT 3");
+$prod_slide = mysqli_num_rows($result);
+?>
+
+<header class="masthead text-center text-white">
+    <div class="masthead-content">
+        <div class="container px-5">
+            <h1 class="mb-0">Loja Musical</h1>
+            <h2 class="mb-0">Diversos produtos, acessórios e insturmentos musicais.</h2>
+        </div>
+    </div>
+    <div class="bg-circle-1 bg-circle"></div>
+    <div class="bg-circle-2 bg-circle"></div>
+    <div class="bg-circle-3 bg-circle"></div>
+    <div class="bg-circle-4 bg-circle"></div>
+</header>
+
+<section id="scroll">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-6 order-lg-2">
+                <div class="p-5">
+                    <img class="img-fluid rounded-circle img-home" src="assets/img/instrumentos.jpg" alt="..." />
+                </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1 order-lg-1">
+                <div class="p-5">
+                    <h3 class="display-4">Instrumentos Musicais</h3>
+                    <p>Varios intrumentos de corda e percussão</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-5 offset-lg-1">
+                <div class="p-5">
+                    <img class="img-fluid rounded-circle img-home" src="assets/img/acessorios.jpg" alt="..." />
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="p-5">
+                    <h3 class="display-4">Acessórios</h3>
+                    <p>Diversos acessórios, pedais de efeitos, baquetas entre outros.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-6 order-lg-2">
+                <div class="p-5">
+                    <img class="img-fluid rounded-circle img-home" src="assets/img/amplificadores.jpg" alt="..." />
+                </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1 order-lg-1">
+                <div class="p-5">
+                    <h3 class="display-4">Amplificadores</h3>
+                    <p>Cubos, retornos e muito mais.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr>
+<h1 class="text-center" style="margin-top: 15vh;">Produtos em destaque</h1>
+<br>
+
+<?php
+$resultado = mysqli_query($GLOBALS['connection'], "SELECT  * FROM tb_produto ORDER BY RAND() LIMIT 4");
+$produto = mysqli_num_rows($resultado);
+?>
+
+<section>
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center">
+            <?php
+            while ($produto = mysqli_fetch_array($resultado)) {
+            ?>
+                <div class="col-md-4 text-center">
+                    <?php $img = $produto['arquivo']; ?>
+                    <img class="featurette-image img-responsive center-block"
+                         src="<?= "resources/upload/$img"; ?>"
+                         style="width: 50%;">
+                    <h3 class="featurette-heading"><?= $produto['nome']; ?></h3>
+                    <p class="lead"><?= $produto['resumo']; ?></p>
+                </div>
+            <?php
+            }
+            ?>
+        </div>
+    </div>
+</section>

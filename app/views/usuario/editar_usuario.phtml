@@ -1,0 +1,36 @@
+<?php
+session_start();
+include_once ("../services/auth/seguranca.php");
+
+$id = $_GET['id'];
+
+//Executa consulta
+$result = mysqli_query($GLOBALS['connection'], "SELECT * FROM tb_usuario WHERE id = '$id' LIMIT 1");
+$usuario = mysqli_fetch_assoc($result);
+?>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Editar Usuário: <?= $usuario['nome']?></h2>
+        </div>
+        <div class="col-md-6 text-end">
+            <a href="page.php?link=2" type="button" class="btn btn-primary">
+                Voltar
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5">
+            <form method="post" action="../services/usuario/edita_usuario.php">
+                <?php include_once ("formulario_usuario.phtml");?>
+
+                <input type="hidden" name="id" value="<?= $usuario['id']?>">
+
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary btn-block">Salvar Alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

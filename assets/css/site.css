@@ -1,0 +1,13 @@
+.img-home {
+    width: 250px !important;
+    height: 250px !important;
+    object-fit: cover !important;
+}
+
+.card-img-top {
+    object-fit: cover !important;
+}
+
+.card-produtos {
+    min-height: 380px;
+}
